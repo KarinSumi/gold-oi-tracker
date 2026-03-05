@@ -57,6 +57,7 @@ def fetch_date_data(date_str):
     return None
 
 def main():
+    os.makedirs(os.path.dirname(DATA_FILE), exist_ok=True)
     data = load_data()
     existing_dates = {r["date"] for r in data["records"]}
     
@@ -89,11 +90,11 @@ def main():
             # Rate limiting sleep
             time.sleep(0.8)
             
+    save_data(data)
     if fetched_count > 0:
-        save_data(data)
         print(f"[+] Successfully fetched {fetched_count} new records.")
     else:
-        print("[*] No new data found.")
+        print("[*] No new data found (base structure ensured).")
 
 if __name__ == "__main__":
     main()
