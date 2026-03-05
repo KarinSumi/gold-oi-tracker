@@ -28,6 +28,9 @@ jobs:
       - name: Fetch Gold Futures OI
         run: python fetch_gold_oi.py
 
+      - name: Generate 20-Day Chart
+        run: python generate_chart.py
+
       - name: Send Discord Notification
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}

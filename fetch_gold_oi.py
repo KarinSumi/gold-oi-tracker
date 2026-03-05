@@ -24,9 +24,9 @@ def load_data():
 
 def save_data(data):
     data["updated_at"] = datetime.now().isoformat()
-    # Sort records by date and keep only the latest 14
+    # Sort records by date and keep only the latest 20
     data["records"].sort(key=lambda x: x["date"], reverse=True)
-    data["records"] = data["records"][:14]
+    data["records"] = data["records"][:20]
     data["records"].sort(key=lambda x: x["date"])  # Store in ascending order
     
     with open(DATA_FILE, "w") as f:
