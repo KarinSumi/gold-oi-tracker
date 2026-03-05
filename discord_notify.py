@@ -35,7 +35,7 @@ def main():
     records = data.get("records", [])
     if len(records) < 2:
         print("[!] Not enough data records to send notification.")
-        sys.exit(0)
+        sys.exit(1)
 
     # Sort records by date to be sure
     records.sort(key=lambda x: x["date"])

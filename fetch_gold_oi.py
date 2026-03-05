@@ -64,8 +64,11 @@ def main():
     today = datetime.now()
     fetched_count = 0
     
-    # Check last 20 days
-    for i in range(20):
+    # Check last 40 calendar days to ensure we get a full 20 trading days
+    for i in range(40):
+        if len(data["records"]) >= 20:
+            break
+            
         target_date = today - timedelta(days=i)
         
         # Skip weekends
@@ -76,7 +79,6 @@ def main():
         date_cme = target_date.strftime("%Y%m%d")
         
         if date_iso in existing_dates:
-            print(f"[s] Date {date_iso} already cached.")
             continue
             
         result = fetch_date_data(date_cme)
