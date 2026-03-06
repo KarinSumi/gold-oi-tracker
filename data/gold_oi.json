@@ -1,11 +1,18 @@
 {
-  "updated_at": "2026-03-06T06:27:30.076550",
+  "updated_at": "2026-03-06T07:07:37.240801",
   "product": "Gold Futures (GC)",
   "records": [
     {
       "date": "2026-03-06",
-      "volume": 22491,
-      "open_interest": 262481
+      "volume": 23918,
+      "open_interest": 262481,
+      "open": 5099.7,
+      "high": 5151.3,
+      "low": 5074.0,
+      "close": 5126.7,
+      "dxy": 99.317,
+      "net_managed_money": 95974,
+      "net_commercials": 0
     }
   ]
 }
