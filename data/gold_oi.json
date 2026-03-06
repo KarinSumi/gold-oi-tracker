@@ -1,5 +1,11 @@
 {
-  "updated_at": "2026-03-05T09:40:31.985830",
+  "updated_at": "2026-03-06T06:27:30.076550",
   "product": "Gold Futures (GC)",
-  "records": []
+  "records": [
+    {
+      "date": "2026-03-06",
+      "volume": 22491,
+      "open_interest": 262481
+    }
+  ]
 }
