@@ -1,17 +1,21 @@
 import os
 import json
 import time
-import requests
+import cloudscraper
 from datetime import datetime, timedelta
 
 DATA_FILE = "data/gold_oi.json"
 PRODUCT_ID = 437  # Gold Futures (GC)
 BASE_URL = "https://www.cmegroup.com/CmeWS/mvc/Volume/VolumeOpenInterest"
 
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-    "Accept": "application/json, text/plain, */*",
-}
+# Initialize cloudscraper to bypass Cloudflare
+scraper = cloudscraper.create_scraper(
+    browser={
+        'browser': 'chrome',
+        'platform': 'windows',
+        'desktop': True
+    }
+)
 
 def load_data():
     if os.path.exists(DATA_FILE):
@@ -36,7 +40,7 @@ def fetch_date_data(date_str):
     url = f"{BASE_URL}?productId={PRODUCT_ID}&tradeDate={date_str}"
     print(f"[*] Fetching data for {date_str}...")
     try:
-        response = requests.get(url, headers=HEADERS, timeout=10)
+        response = scraper.get(url, timeout=15)
         if response.status_code == 200:
             res_data = response.json()
             # CME returns null volume/OI if data isn't ready yet
@@ -50,6 +54,8 @@ def fetch_date_data(date_str):
                 return {"volume": vol, "open_interest": oi}
             else:
                 print(f"    [!] No data available for {date_str} (yet)")
+        elif response.status_code in [401, 403]:
+            print(f"    [!] BLOCKED: API returned {response.status_code}. Cloudflare protection triggered.")
         else:
             print(f"    [!] API returned status code {response.status_code}")
     except Exception as e:
