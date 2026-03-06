@@ -62,8 +62,8 @@ def main():
     today = datetime.now()
     fetched_count = 0
     
-    # Check last 40 calendar days to ensure we get a full 20 trading days
-    for i in range(40):
+    # Check last 5 calendar days to ensure we get the latest data
+    for i in range(5):
         if len(data["records"]) >= 20:
             break
             

@@ -33,15 +33,16 @@ def main():
         sys.exit(1)
 
     records = data.get("records", [])
-    if len(records) < 2:
-        print("[!] Not enough data records to send notification.")
+    if len(records) < 1:
+        print("[!] No data records to send notification.")
         sys.exit(1)
 
     # Sort records by date to be sure
     records.sort(key=lambda x: x["date"])
     
     latest = records[-1]
-    previous = records[-2]
+    # If we only have 1 record, compare it with itself (0% change)
+    previous = records[-2] if len(records) >= 2 else latest
 
     oi_up = latest["open_interest"] >= previous["open_interest"]
     embed_color = 3066993 if oi_up else 15158332 # Green or Red (decimal)
