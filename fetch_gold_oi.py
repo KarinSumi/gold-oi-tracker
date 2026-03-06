@@ -1,21 +1,12 @@
 import os
 import json
 import time
-import cloudscraper
+from curl_cffi import requests
 from datetime import datetime, timedelta
 
 DATA_FILE = "data/gold_oi.json"
 PRODUCT_ID = 437  # Gold Futures (GC)
 BASE_URL = "https://www.cmegroup.com/CmeWS/mvc/Volume/VolumeOpenInterest"
-
-# Initialize cloudscraper to bypass Cloudflare
-scraper = cloudscraper.create_scraper(
-    browser={
-        'browser': 'chrome',
-        'platform': 'windows',
-        'desktop': True
-    }
-)
 
 def load_data():
     if os.path.exists(DATA_FILE):
@@ -40,7 +31,8 @@ def fetch_date_data(date_str):
     url = f"{BASE_URL}?productId={PRODUCT_ID}&tradeDate={date_str}"
     print(f"[*] Fetching data for {date_str}...")
     try:
-        response = scraper.get(url, timeout=15)
+        # Using curl_cffi to impersonate Chrome 110 TLS fingerprint
+        response = requests.get(url, impersonate="chrome110", timeout=15)
         if response.status_code == 200:
             res_data = response.json()
             # CME returns null volume/OI if data isn't ready yet
