@@ -33,9 +33,9 @@ def main():
         sys.exit(1)
 
     records = data.get("records", [])
-    if len(records) < 1:
+    if not records:
         print("[!] No data records to send notification.")
-        sys.exit(1)
+        sys.exit(0) # Exit gracefully if no data at all
 
     # Sort records by date to be sure
     records.sort(key=lambda x: x["date"])
