@@ -1,19 +1,7 @@
 {
-  "updated_at": "2026-05-14T10:13:32.004732",
+  "updated_at": "2026-05-20T10:49:11.933293",
   "product": "Gold Futures (GC)",
   "records": [
-    {
-      "date": "2026-03-30",
-      "volume": 62027,
-      "open_interest": 242136,
-      "open": 4520.0,
-      "high": 4579.2,
-      "low": 4444.7,
-      "close": 4568.5,
-      "dxy": 100.151,
-      "net_managed_money": 91621,
-      "net_commercials": 0
-    },
     {
       "date": "2026-03-31",
       "volume": 56053,
@@ -240,6 +228,18 @@
       "close": 4705.7,
       "dxy": 98.524,
       "net_managed_money": 94254,
+      "net_commercials": 0
+    },
+    {
+      "date": "2026-05-20",
+      "volume": 55935,
+      "open_interest": 191417,
+      "open": 4486.6,
+      "high": 4512.0,
+      "low": 4455.0,
+      "close": 4499.1,
+      "dxy": 99.327,
+      "net_managed_money": 98015,
       "net_commercials": 0
     }
   ]
